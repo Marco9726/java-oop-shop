@@ -6,12 +6,14 @@ public class Conto {
 	private String nome;
 	private static int saldo = 0;
 	
+//	costruttore
 	public Conto (int codice, String nome) {
 		
 		setCodice(codice);
 		setNome(nome);
 	}
 	
+//	getter and setter
 	public int getCodice() {
 		
 		return codice;
@@ -41,5 +43,27 @@ public class Conto {
 		
 		this.saldo = saldo;
 	}
+	
+//	metodi 
+	public void versamento( int somma) {
+		
+		saldo += somma;
+	}
+	
+	public void prelievo( int somma) {
+		
+		if ( saldo > 0 && somma <= saldo) {
+			
+			saldo-= somma;
+		}
+	}
+	
+	public String getInfo() {
+		
+		String info = codice + nome + saldo;
+		return info;
+	}
+	
+	
 	
 }

@@ -102,6 +102,7 @@ public class Prodotto {
 //		
 //	}
 	
+//	toString
 	@Override
 	public String toString() {
 		
