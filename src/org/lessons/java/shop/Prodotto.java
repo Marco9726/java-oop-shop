@@ -1,5 +1,7 @@
 package org.lessons.java.shop;
 
+import java.util.Random;
+
 public class Prodotto {
 	
 	private int codice;
@@ -8,15 +10,15 @@ public class Prodotto {
 	private double prezzo;
 	private double iva;
 	
-	public Prodotto( int codice, String nome, String descrizione, double prezzo, double iva) {
+	public Prodotto( String nome, String descrizione, double prezzo) {
 		
-		setCodice(codice);
+		
+		setCodice();
 		setNome(nome);
 		setDescrizione(descrizione);
 		setPrezzo(prezzo);
-		setIva(iva);
-		
-		
+		setIva(prezzo);
+			
 	}
 	
 	public int getCodice() {
@@ -24,9 +26,11 @@ public class Prodotto {
 		return codice;
 	}
 	
-	private void setCodice( int codice) {
+	private void setCodice() {
 		
-		this.codice = codice;
+		Random rnd = new Random();
+		
+		codice = rnd.nextInt(101);
 	}
 	
 	public String getNome() {
@@ -64,8 +68,31 @@ public class Prodotto {
 		return iva;
 	}
 	
-	public void setIva( double iva) {
+	
+	public void setIva( double prezzo) {
 		
-		this.iva = iva;
+		this.iva = prezzo / 100 * 22;
+	}
+	
+	public double prezzoNoIva( double prezzo, double iva) {
+		
+		return prezzo - iva;
+	}
+	
+	public String nomeEsteso( int codice, String nome) {
+		
+		return codice + nome;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "[" + getCodice() + "] Prodotto: " + getNome() + "\n"
+				+ "Descrizione: " + getDescrizione() + "\n" 
+				+ "Prezzo: " + getPrezzo() + "\n"
+				+ "Iva: " + + getIva() + "\n"
+				+ "Prezzo senza Iva: " + prezzoNoIva( prezzo, iva) + "\n"
+				+ "Nome esteso: " + nomeEsteso(codice, nome) + "\n";
+				 
 	}
 }
