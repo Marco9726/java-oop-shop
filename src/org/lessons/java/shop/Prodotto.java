@@ -84,8 +84,28 @@ public class Prodotto {
 		return codice + nome;
 	}
 	
+//	public String codiceCompleto ( int codice) {
+//		
+//		String cod = this.codice + "";
+//		
+//		
+//		for ( int i = 7; i < cod.length(); i-- ) {
+//			
+//			String zeri = "00000000";
+//			
+//			
+//			int count = cod.length() -1;
+//			
+//			zeri.charAt(i) = cod.charAt(count--);
+//		}
+//		
+//		
+//	}
+	
 	@Override
 	public String toString() {
+		
+		String cod = this.codice + "";
 		
 		return "[" + getCodice() + "] Prodotto: " + getNome() + "\n"
 				+ "Descrizione: " + getDescrizione() + "\n" 
