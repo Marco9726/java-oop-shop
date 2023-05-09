@@ -39,7 +39,7 @@ public class Conto {
 		return saldo;
 	}
 	
-	private void getSaldo( int saldo) {
+	private void setSaldo( int saldo) {
 		
 		this.saldo = saldo;
 	}
@@ -47,23 +47,27 @@ public class Conto {
 //	metodi 
 	public void versamento( int somma) {
 		
+		if (somma < 0) return;
+		
 		saldo += somma;
 	}
 	
-	public void prelievo( int somma) {
+	public boolean prelievo( int somma) {
 		
-		if ( saldo > 0 && somma <= saldo) {
+		if ( somma > 0 && somma <= saldo) {
 			
 			saldo-= somma;
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
 	public String getInfo() {
 		
-		String info = codice + nome + saldo;
+		String info = getCodice() + getNome() + getSaldo();
 		return info;
 	}
-	
-	
+		
 	
 }

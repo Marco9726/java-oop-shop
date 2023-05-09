@@ -7,10 +7,10 @@ public class Prodotto {
 	private int codice;
 	private String nome;
 	private String descrizione;
-	private double prezzo;
-	private double iva;
+	private int prezzo;
+	private float iva;
 	
-	public Prodotto( String nome, String descrizione, double prezzo) {
+	public Prodotto( String nome, String descrizione, int prezzo) {
 		
 		
 		setCodice();
@@ -30,7 +30,7 @@ public class Prodotto {
 		
 		Random rnd = new Random();
 		
-		codice = rnd.nextInt(101);
+		codice = rnd.nextInt(99999999);
 	}
 	
 	public String getNome() {
@@ -53,12 +53,12 @@ public class Prodotto {
 		this.descrizione = descrizione;
 	}
 	
-	public double getPrezzo() {
+	public int getPrezzo() {
 		
 		return prezzo;
 	}
 	
-	public void setPrezzo( double prezzo) {
+	public void setPrezzo( int prezzo) {
 		
 		this.prezzo = prezzo;
 	}
@@ -69,14 +69,14 @@ public class Prodotto {
 	}
 	
 	
-	public void setIva( double prezzo) {
+	public void setIva( int prezzo) {
 		
-		this.iva = prezzo / 100 * 22;
+		this.iva = prezzo / 100f * 22;
 	}
 	
-	public double prezzoNoIva( double prezzo, double iva) {
+	public float prezzoNoIva( int prezzo, float iva) {
 		
-		return prezzo - iva;
+		return (float) (prezzo - iva);
 	}
 	
 	public String nomeEsteso( int codice, String nome) {
@@ -84,31 +84,25 @@ public class Prodotto {
 		return codice + nome;
 	}
 	
-//	public String codiceCompleto ( int codice) {
-//		
-//		String cod = this.codice + "";
-//		
-//		
-//		for ( int i = 7; i < cod.length(); i-- ) {
-//			
-//			String zeri = "00000000";
-//			
-//			
-//			int count = cod.length() -1;
-//			
-//			zeri.charAt(i) = cod.charAt(count--);
-//		}
-//		
-//		
-//	}
+	public String getPaddedCode() {
+		
+		String strCode = "" + codice;
+		
+		int strLng = strCode.length();
+		
+		for (int x=0; x < 8 - strLng ; x++) {
+			
+			strCode = "0" + strCode;
+		}
+		
+		return strCode;
+	}
 	
 //	toString
 	@Override
 	public String toString() {
 		
-		String cod = this.codice + "";
-		
-		return "[" + getCodice() + "] Prodotto: " + getNome() + "\n"
+		return "[" + getCodice() + "] Prodotto: " + getNome() + " "  + getPaddedCode() +  "\n"
 				+ "Descrizione: " + getDescrizione() + "\n" 
 				+ "Prezzo: " + getPrezzo() + "\n"
 				+ "Iva: " + + getIva() + "\n"
